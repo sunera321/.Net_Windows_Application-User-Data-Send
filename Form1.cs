@@ -95,7 +95,7 @@ namespace WindowsFormsApp
 
                     if (response.IsSuccessStatusCode)
                     {
-                        MessageBox.Show("Data sent successfully.");
+                        MessageBox.Show("Data sent successfully..");
                     }
                     else
                     {
