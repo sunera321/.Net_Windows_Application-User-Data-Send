@@ -20,7 +20,26 @@ namespace separate_app
             InitializeComponent();
         }
 
-        private async Task button1_ClickAsync(object sender, EventArgs e)
+       
+
+        private void home_Click(object sender, EventArgs e)
+         {
+             Form1 form1 = new Form1();
+             form1.Show();
+             this.Hide();
+         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
         {
             string userInput = textBox1.Text;
 
@@ -51,33 +70,6 @@ namespace separate_app
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void home_Click(object sender, EventArgs e)
-        {
-            Form1 form1 = new Form1();
-            form1.Show();
-            this.Hide();
         }
     }
 }
