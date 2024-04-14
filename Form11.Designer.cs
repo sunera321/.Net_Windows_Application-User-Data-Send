@@ -75,7 +75,7 @@
             this.label1.Size = new System.Drawing.Size(124, 28);
             this.label1.TabIndex = 19;
             this.label1.Text = "Enter Key :";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            
             // 
             // Form11
             // 
