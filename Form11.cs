@@ -64,7 +64,18 @@ namespace separate_app
                     {
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
                         {
-                            MessageBox.Show("License Key Activated Successfully.");
+                            if(response.Content.ReadAsStringAsync().Result == "Activated")
+                            {
+                                MessageBox.Show("License Key Activated Successfully.");
+                            }
+                            if (response.Content.ReadAsStringAsync().Result == "Key Already Activated")
+                            {
+                                MessageBox.Show("License Key Already Activated.");
+                            }
+                            if (response.Content.ReadAsStringAsync().Result == "Expired")
+                            {
+                                MessageBox.Show("Expired");
+                            }
                         }
                         
                        
