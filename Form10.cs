@@ -10,6 +10,7 @@ using System.Security.Policy;
 using Microsoft.Web.Administration;
 using System.Collections.Generic;
 using Site = Microsoft.Web.Administration.Site;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsApp
 {
@@ -25,18 +26,31 @@ namespace WindowsFormsApp
            
             string hostUrl = GetHostUrl();
             string macAddress = GetMacAddress();
-            string[] siteNames = GetSiteNames();
+         
+
+            string licenseKeyInput = licenseKey.Text;
+
+            if (string.IsNullOrWhiteSpace(licenseKeyInput))
+            {
+                MessageBox.Show("Please Enter Your License Key.");
+                return;
+            }
+
+
 
             txtHostUrl.Text = hostUrl;
             txtMacAddress.Text = macAddress;
-            txtSiteNames.Text = string.Join(Environment.NewLine, siteNames);
+            licenseKey.Text = licenseKeyInput;
+
 
 
             var data = new PostDataModel
             {
                 HostUrl = hostUrl,
                 MacAddress = macAddress,
-                SiteNames = siteNames
+                licenseKey= licenseKeyInput
+
+
             };
 
            
@@ -81,7 +95,7 @@ namespace WindowsFormsApp
 
             return macAddresses;
         }
-
+    
         private async void SendDataToUrl(PostDataModel data)
         {
             using (var client = new HttpClient())
@@ -150,5 +164,16 @@ namespace WindowsFormsApp
             form1.Show();
             this.Hide();
         }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
     }
 }
