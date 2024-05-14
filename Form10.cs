@@ -46,9 +46,9 @@ namespace WindowsFormsApp
 
             var data = new PostDataModel
             {
-                HostUrl = hostUrl,
-                MacAddress = macAddress,
-                licenseKey= licenseKeyInput
+                hostUrl = hostUrl,
+                macAddress = macAddress,
+                licenceKey = licenseKeyInput
 
 
             };
@@ -64,7 +64,7 @@ namespace WindowsFormsApp
             string hostUrl = "http://" + hostName; // Assuming HTTP, change to HTTPS if needed
             return hostUrl;
         }
-
+/*
         private string[] GetSiteNames()
         {
             var serverManager = new ServerManager();
@@ -76,7 +76,7 @@ namespace WindowsFormsApp
             }
 
             return siteNamesList.ToArray();
-        }
+        }*/
 
         private string GetMacAddress()
         {
@@ -105,15 +105,15 @@ namespace WindowsFormsApp
 
                 try
                 {
-                    var response = await client.PostAsync("https://licence-management.free.beeceptor.com", content);
+                    var response = await client.PostAsync("https://localhost:7295/api/ClinetSeverInfo/AddClientServerDetails", content);
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        if (response.Content.ReadAsStringAsync().Result == "Invalid Licence Key")
+                        {
+                            MessageBox.Show("Invalid Licence Key.");
+                        }
 
-                    if (response.IsSuccessStatusCode)
-                    {
-                        MessageBox.Show("Data sent successfully..");
-                    }
-                    else
-                    {
-                        MessageBox.Show($"Error sending data: {response.StatusCode}");
+                       
                     }
                 }
                 catch (Exception ex)

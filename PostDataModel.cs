@@ -8,9 +8,8 @@ namespace separate_app
 {
     internal class PostDataModel
     {
-        public string HostUrl { get; set; }
-        public string MacAddress { get; set; }
-        public string[] SiteNames { get; set; }
-        public string licenseKey { get; set; }
+        public string hostUrl { get; set; }
+        public string macAddress { get; set; }
+        public string licenceKey { get; set; }
     }
 }

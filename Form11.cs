@@ -77,8 +77,6 @@ namespace separate_app
                                 MessageBox.Show("Expired");
                             }
                         }
-                        
-                       
                     }
                     else
                     {
