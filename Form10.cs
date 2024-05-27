@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Text;
 using System.Net.NetworkInformation;
 using System.Net;
+using System.Net.Http;
 using separate_app;
 using System.Security.Policy;
 using Microsoft.Web.Administration;
@@ -64,19 +65,19 @@ namespace WindowsFormsApp
             string hostUrl = "http://" + hostName; // Assuming HTTP, change to HTTPS if needed
             return hostUrl;
         }
-/*
-        private string[] GetSiteNames()
-        {
-            var serverManager = new ServerManager();
-            List<string> siteNamesList = new List<string>();
+        /*
+                private string[] GetSiteNames()
+                {
+                    var serverManager = new ServerManager();
+                    List<string> siteNamesList = new List<string>();
 
-            foreach (Site site in serverManager.Sites)
-            {
-                siteNamesList.Add(site.Name);
-            }
+                    foreach (Site site in serverManager.Sites)
+                    {
+                        siteNamesList.Add(site.Name);
+                    }
 
-            return siteNamesList.ToArray();
-        }*/
+                    return siteNamesList.ToArray();
+                }*/
 
         private string GetMacAddress()
         {
@@ -88,14 +89,14 @@ namespace WindowsFormsApp
                 if (nic.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
                     nic.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
                 {
-                    macAddresses += nic.GetPhysicalAddress().ToString();
+                    macAddresses = BitConverter.ToString(nic.GetPhysicalAddress().GetAddressBytes());
                     break; // Only need the first MAC address
                 }
             }
 
             return macAddresses;
         }
-    
+
         private async void SendDataToUrl(PostDataModel data)
         {
             using (var client = new HttpClient())
@@ -105,15 +106,34 @@ namespace WindowsFormsApp
 
                 try
                 {
-                    var response = await client.PostAsync("https://localhost:7295/api/ClinetSeverInfo/AddClientServerDetails", content);
-                    if (response.StatusCode == HttpStatusCode.OK)
+                    var response = await client.PostAsync("https://localhost:7295/api/LogingValidateInfo/AddClientServerDetails", content);
+                    if (response.IsSuccessStatusCode)
                     {
-                        if (response.Content.ReadAsStringAsync().Result == "Invalid Licence Key")
-                        {
-                            MessageBox.Show("Invalid Licence Key.");
+                        if (response.StatusCode == HttpStatusCode.OK) { 
+                            if (response.Content.ReadAsStringAsync().Result == "Invalid Licence Key")
+                            {
+                                MessageBox.Show("Invalid Licence Key.");
+                            }
+                            if (response.Content.ReadAsStringAsync().Result == "Invalid Mac Address")
+                            {
+                                MessageBox.Show("Invalid Mac Address.");
+                            }
+                            if (response.Content.ReadAsStringAsync().Result == "Invalid Host Url")
+                            {
+                                MessageBox.Show("Invalid Host Url.");
+                            }
+                            if (response.Content.ReadAsStringAsync().Result == "Invalid Mac Address and Host Url")
+                            {
+                                MessageBox.Show("Invalid Mac Address and Host Url.");
+                            }
+                            if (response.Content.ReadAsStringAsync().Result == "Valid_Loging")
+                            {
+                                MessageBox.Show("Valid Loging.");
+                            
+                            }
                         }
 
-                       
+
                     }
                 }
                 catch (Exception ex)

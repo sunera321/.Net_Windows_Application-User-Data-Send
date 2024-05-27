@@ -55,7 +55,6 @@
             this.txtMacAddress.Location = new System.Drawing.Point(185, 178);
             this.txtMacAddress.Multiline = true;
             this.txtMacAddress.Name = "txtMacAddress";
-            this.txtMacAddress.ReadOnly = true;
             this.txtMacAddress.Size = new System.Drawing.Size(504, 46);
             this.txtMacAddress.TabIndex = 1;
             // 
@@ -65,7 +64,6 @@
             this.txtHostUrl.Location = new System.Drawing.Point(185, 247);
             this.txtHostUrl.Multiline = true;
             this.txtHostUrl.Name = "txtHostUrl";
-            this.txtHostUrl.ReadOnly = true;
             this.txtHostUrl.Size = new System.Drawing.Size(504, 46);
             this.txtHostUrl.TabIndex = 2;
             this.txtHostUrl.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
