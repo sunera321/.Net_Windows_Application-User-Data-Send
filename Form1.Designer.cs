@@ -34,27 +34,29 @@
             // 
             // ValideteKey
             // 
-            this.ValideteKey.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ValideteKey.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ValideteKey.Location = new System.Drawing.Point(500, 171);
+            this.ValideteKey.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ValideteKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ValideteKey.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ValideteKey.Location = new System.Drawing.Point(583, 351);
             this.ValideteKey.MinimumSize = new System.Drawing.Size(150, 50);
             this.ValideteKey.Name = "ValideteKey";
-            this.ValideteKey.Size = new System.Drawing.Size(150, 50);
+            this.ValideteKey.Size = new System.Drawing.Size(222, 64);
             this.ValideteKey.TabIndex = 0;
-            this.ValideteKey.Text = "Validete Key";
+            this.ValideteKey.Text = "Loging";
             this.ValideteKey.UseVisualStyleBackColor = false;
             this.ValideteKey.Click += new System.EventHandler(this.ValideteKey_Click);
             // 
             // ActivateKey
             // 
-            this.ActivateKey.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ActivateKey.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ActivateKey.Location = new System.Drawing.Point(165, 171);
+            this.ActivateKey.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ActivateKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ActivateKey.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ActivateKey.Location = new System.Drawing.Point(161, 351);
             this.ActivateKey.MinimumSize = new System.Drawing.Size(150, 50);
             this.ActivateKey.Name = "ActivateKey";
-            this.ActivateKey.Size = new System.Drawing.Size(150, 50);
+            this.ActivateKey.Size = new System.Drawing.Size(222, 64);
             this.ActivateKey.TabIndex = 1;
-            this.ActivateKey.Text = "Activate Key";
+            this.ActivateKey.Text = "Activate Software";
             this.ActivateKey.UseVisualStyleBackColor = false;
             this.ActivateKey.Click += new System.EventHandler(this.ActivateKey_Click);
             // 
@@ -62,9 +64,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackgroundImage = global::separate_app.Properties.Resources.MicrosoftTeams_image1;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(931, 500);
             this.Controls.Add(this.ActivateKey);
             this.Controls.Add(this.ValideteKey);
+            this.DoubleBuffered = true;
+            this.ForeColor = System.Drawing.Color.White;
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);

@@ -12,14 +12,19 @@ using Microsoft.Web.Administration;
 using System.Collections.Generic;
 using Site = Microsoft.Web.Administration.Site;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.IO;
 
 namespace WindowsFormsApp
 {
     public partial class Form10 : Form
-    {
+
+
+        
+    {   
         public Form10()
         {
             InitializeComponent();
+
         }
 
         private void btnSendData_Click(object sender, EventArgs e)
@@ -27,13 +32,20 @@ namespace WindowsFormsApp
            
             string hostUrl = GetHostUrl();
             string macAddress = GetMacAddress();
-         
+            string licenseKeyInput = GetLicenseKey();
+            string SoftwareName = software.Text;
 
-            string licenseKeyInput = licenseKey.Text;
+            
+
+            if (string.IsNullOrWhiteSpace(SoftwareName))
+            {
+                MessageBox.Show("Pleace Select Software");
+                return;
+            }
 
             if (string.IsNullOrWhiteSpace(licenseKeyInput))
             {
-                MessageBox.Show("Please Enter Your License Key.");
+                MessageBox.Show("This Software is not activeted");
                 return;
             }
 
@@ -42,6 +54,7 @@ namespace WindowsFormsApp
             txtHostUrl.Text = hostUrl;
             txtMacAddress.Text = macAddress;
             licenseKey.Text = licenseKeyInput;
+            software.Text= SoftwareName;
 
 
 
@@ -49,7 +62,10 @@ namespace WindowsFormsApp
             {
                 hostUrl = hostUrl,
                 macAddress = macAddress,
-                licenceKey = licenseKeyInput
+                licenceKey = licenseKeyInput,
+                SoftwareName = SoftwareName
+
+
 
 
             };
@@ -65,20 +81,23 @@ namespace WindowsFormsApp
             string hostUrl = "http://" + hostName; // Assuming HTTP, change to HTTPS if needed
             return hostUrl;
         }
-        /*
-                private string[] GetSiteNames()
+            
+        private string GetLicenseKey()
+        {
+            //read the licensekey.txt propaty file and retern the license key
+            if(File.Exists("licensekey.txt"))
+            {
+                using (StreamReader SR = new StreamReader("licensekey.txt"))
                 {
-                    var serverManager = new ServerManager();
-                    List<string> siteNamesList = new List<string>();
-
-                    foreach (Site site in serverManager.Sites)
-                    {
-                        siteNamesList.Add(site.Name);
-                    }
-
-                    return siteNamesList.ToArray();
-                }*/
-
+                    return SR.ReadLine();
+                }
+            }
+            else
+            {
+                MessageBox.Show("License Key File Not Found");
+                return null;
+            }
+        }
         private string GetMacAddress()
         {
             string macAddresses = "";
@@ -112,23 +131,27 @@ namespace WindowsFormsApp
                         if (response.StatusCode == HttpStatusCode.OK) { 
                             if (response.Content.ReadAsStringAsync().Result == "Invalid Licence Key")
                             {
-                                MessageBox.Show("Invalid Licence Key.");
+                                MessageBox.Show("Invalid Licence Key.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            }
+                            if (response.Content.ReadAsStringAsync().Result == "Don't have access this software")
+                            {
+                                MessageBox.Show("Don't have access this software", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                             }
                             if (response.Content.ReadAsStringAsync().Result == "Invalid Mac Address")
                             {
-                                MessageBox.Show("Invalid Mac Address.");
+                                MessageBox.Show("Invalid Mac Address.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                             }
                             if (response.Content.ReadAsStringAsync().Result == "Invalid Host Url")
                             {
-                                MessageBox.Show("Invalid Host Url.");
+                                MessageBox.Show("Invalid Host Url.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                             }
                             if (response.Content.ReadAsStringAsync().Result == "Invalid Mac Address and Host Url")
                             {
-                                MessageBox.Show("Invalid Mac Address and Host Url.");
+                                MessageBox.Show("Invalid Mac Address and Host Url.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                             }
-                            if (response.Content.ReadAsStringAsync().Result == "Valid_Loging")
+                            if (response.Content.ReadAsStringAsync().Result == "Valid Loging")
                             {
-                                MessageBox.Show("Valid Loging.");
+                                MessageBox.Show("Valid Loging.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                             
                             }
                         }
@@ -195,5 +218,19 @@ namespace WindowsFormsApp
             
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

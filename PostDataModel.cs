@@ -11,5 +11,6 @@ namespace separate_app
         public string hostUrl { get; set; }
         public string macAddress { get; set; }
         public string licenceKey { get; set; }
+        public string SoftwareName { get; set; }
     }
 }

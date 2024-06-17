@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,21 +67,32 @@ namespace separate_app
                         {
                             if(response.Content.ReadAsStringAsync().Result == "Activated")
                             {
-                                MessageBox.Show("License Key Activated Successfully.");
+                                MessageBox.Show("License Key Activated Successfully.", "Ok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                using (StreamWriter sw = new StreamWriter("LicenseKey.txt"))
+                                {
+                                    sw.WriteLine(licenseKey);
+                                }
+
                             }
                             if (response.Content.ReadAsStringAsync().Result == "Key Already Activated")
                             {
-                                MessageBox.Show("License Key Already Activated.");
+                                MessageBox.Show("License Key Already Activated.","Error",MessageBoxButtons.OK,MessageBoxIcon.Stop);
                             }
                             if (response.Content.ReadAsStringAsync().Result == "Expired")
                             {
-                                MessageBox.Show("Expired");
+                                MessageBox.Show("Expired", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                //clear the licensekey.text file
+                                using (StreamWriter sw = new StreamWriter("LicenseKey.txt"))
+                                {
+                                    sw.WriteLine("");
+                                }
                             }
                         }
                     }
                     else
                     {
-                        MessageBox.Show("License Key Invalid.Please Try again.");
+                        MessageBox.Show("License Key Invalid.Please Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
@@ -88,6 +100,16 @@ namespace separate_app
                     MessageBox.Show($"An error occurred: {ex.Message}");
                 }
             }
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form11_Load(object sender, EventArgs e)
+        {
+
         }
     }
 
