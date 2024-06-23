@@ -13,66 +13,70 @@ using System.Collections.Generic;
 using Site = Microsoft.Web.Administration.Site;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace WindowsFormsApp
 {
     public partial class Form10 : Form
-
-
-        
-    {   
-        public Form10()
+    {
+        private string Software_Name; 
+        public Form10(string softwareName)
         {
             InitializeComponent();
-
+            Software_Name = softwareName;
+            
         }
 
-        private void btnSendData_Click(object sender, EventArgs e)
+        private async void btnSendData_Click(object sender, EventArgs e)
         {
-           
+
+            btnSendData.Enabled = false;
+            guna2ProgressIndicator1.Visible = true;
+            guna2ProgressIndicator1.Start();
+
             string hostUrl = GetHostUrl();
             string macAddress = GetMacAddress();
             string licenseKeyInput = GetLicenseKey();
-            string SoftwareName = software.Text;
+        
 
             
 
-            if (string.IsNullOrWhiteSpace(SoftwareName))
-            {
-                MessageBox.Show("Pleace Select Software");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(licenseKeyInput))
-            {
-                MessageBox.Show("This Software is not activeted");
-                return;
-            }
 
 
 
             txtHostUrl.Text = hostUrl;
             txtMacAddress.Text = macAddress;
             licenseKey.Text = licenseKeyInput;
-            software.Text= SoftwareName;
 
 
-
+            
             var data = new PostDataModel
             {
                 hostUrl = hostUrl,
                 macAddress = macAddress,
                 licenceKey = licenseKeyInput,
-                SoftwareName = SoftwareName
+                SoftwareName = Software_Name
+
 
 
 
 
             };
+         
+       
+                await SendDataToUrl(data);
 
-           
-            SendDataToUrl(data);
-            
+
+            guna2ProgressIndicator1.Stop();
+            guna2ProgressIndicator1.Visible = false;
+            btnSendData.Enabled = true;
+
+
+
+
+
+
+
         }
 
         private string GetHostUrl()
@@ -116,7 +120,7 @@ namespace WindowsFormsApp
             return macAddresses;
         }
 
-        private async void SendDataToUrl(PostDataModel data)
+        private async Task SendDataToUrl(PostDataModel data)
         {
             using (var client = new HttpClient())
             {
@@ -128,6 +132,7 @@ namespace WindowsFormsApp
                     var response = await client.PostAsync("https://localhost:7295/api/LogingValidateInfo/AddClientServerDetails", content);
                     if (response.IsSuccessStatusCode)
                     {
+                     
                         if (response.StatusCode == HttpStatusCode.OK) { 
                             if (response.Content.ReadAsStringAsync().Result == "Invalid Licence Key")
                             {
@@ -137,11 +142,16 @@ namespace WindowsFormsApp
                             {
                                 MessageBox.Show("Don't have access this software", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                             }
+                            if (response.Content.ReadAsStringAsync().Result == "Expired")
+                            {
+                                MessageBox.Show("Licence key is Expired", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            }
                             if (response.Content.ReadAsStringAsync().Result == "Invalid Mac Address")
                             {
                                 MessageBox.Show("Invalid Mac Address.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                             }
-                            if (response.Content.ReadAsStringAsync().Result == "Invalid Host Url")
+                            if (response.Content.ReadAsStringAsync().Result == "Invalid Host URL")
+                     
                             {
                                 MessageBox.Show("Invalid Host Url.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                             }
@@ -203,8 +213,8 @@ namespace WindowsFormsApp
 
         private void home_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
-            form1.Show();
+            Form12 form12 = new Form12();
+            form12.Show();
             this.Hide();
         }
 
@@ -229,6 +239,26 @@ namespace WindowsFormsApp
         }
 
         private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void progressBar1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void progressBar1_ValueChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2ProgressIndicator1_Click(object sender, EventArgs e)
         {
 
         }

@@ -20,9 +20,8 @@ namespace separate_app
 
         private void ValideteKey_Click(object sender, EventArgs e)
         {
-            Form10 form10 = new Form10();
-            form10.Show();
-
+            Form12 form12 = new Form12();
+            form12.Show();
             this.Hide();
         }
 
@@ -31,6 +30,11 @@ namespace separate_app
             Form11 form11 = new Form11();
             form11.Show();
             this.Hide();
+        }
+
+        private void HeadLine_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
