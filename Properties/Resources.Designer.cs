@@ -93,6 +93,56 @@ namespace separate_app.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hrenterprise {
+            get {
+                object obj = ResourceManager.GetObject("hrenterprise", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hrenterprise1 {
+            get {
+                object obj = ResourceManager.GetObject("hrenterprise1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hro {
+            get {
+                object obj = ResourceManager.GetObject("hro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_back_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-back-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap juura {
+            get {
+                object obj = ResourceManager.GetObject("juura", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MicrosoftTeams_image {
             get {
                 object obj = ResourceManager.GetObject("MicrosoftTeams-image", resourceCulture);
@@ -106,6 +156,36 @@ namespace separate_app.Properties {
         internal static System.Drawing.Bitmap MicrosoftTeams_image1 {
             get {
                 object obj = ResourceManager.GetObject("MicrosoftTeams-image1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap people {
+            get {
+                object obj = ResourceManager.GetObject("people", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Screenshot_2024_06_21_092538 {
+            get {
+                object obj = ResourceManager.GetObject("Screenshot 2024-06-21 092538", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tracking {
+            get {
+                object obj = ResourceManager.GetObject("tracking", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

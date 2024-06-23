@@ -78,6 +78,10 @@ namespace separate_app
                             if (response.Content.ReadAsStringAsync().Result == "Key Already Activated")
                             {
                                 MessageBox.Show("License Key Already Activated.","Error",MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                                using (StreamWriter sw = new StreamWriter("LicenseKey.txt"))
+                                {
+                                    sw.WriteLine(licenseKey);
+                                }
                             }
                             if (response.Content.ReadAsStringAsync().Result == "Expired")
                             {
@@ -108,6 +112,21 @@ namespace separate_app
         }
 
         private void Form11_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
         {
 
         }
