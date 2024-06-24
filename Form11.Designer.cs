@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.label2 = new System.Windows.Forms.Label();
+            this.guna2ProgressIndicator1 = new Guna.UI2.WinForms.Guna2ProgressIndicator();
             this.SuspendLayout();
             // 
             // home
@@ -107,6 +108,15 @@
             this.label2.TabIndex = 24;
             this.label2.Text = resources.GetString("label2.Text");
             // 
+            // guna2ProgressIndicator1
+            // 
+            this.guna2ProgressIndicator1.Location = new System.Drawing.Point(311, 495);
+            this.guna2ProgressIndicator1.Name = "guna2ProgressIndicator1";
+            this.guna2ProgressIndicator1.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.guna2ProgressIndicator1.Size = new System.Drawing.Size(65, 70);
+            this.guna2ProgressIndicator1.TabIndex = 27;
+            this.guna2ProgressIndicator1.Click += new System.EventHandler(this.guna2ProgressIndicator1_Click);
+            // 
             // Form11
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -114,6 +124,7 @@
             this.BackColor = System.Drawing.Color.Navy;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1386, 689);
+            this.Controls.Add(this.guna2ProgressIndicator1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.guna2HtmlLabel1);
             this.Controls.Add(this.label1);
@@ -137,5 +148,6 @@
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private System.Windows.Forms.Label label2;
+        private Guna.UI2.WinForms.Guna2ProgressIndicator guna2ProgressIndicator1;
     }
 }

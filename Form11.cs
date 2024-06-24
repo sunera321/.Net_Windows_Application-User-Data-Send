@@ -27,6 +27,11 @@ namespace separate_app
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            button1.Enabled = false;
+            guna2ProgressIndicator1.Visible = true;
+            guna2ProgressIndicator1.Start();
+
+
             string userInput = textBox1.Text;
 
             if (string.IsNullOrWhiteSpace(userInput))
@@ -38,11 +43,15 @@ namespace separate_app
             try
             {
                 await SendDataToUrl(userInput);
+              
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
+            guna2ProgressIndicator1.Stop();
+            guna2ProgressIndicator1.Visible = false;
+            button1.Enabled = true;
         }
 
         private static async Task SendDataToUrl(string licenseKey)
@@ -59,13 +68,21 @@ namespace separate_app
 
                 try
                 {
-                    var response = await client.PostAsync("https://localhost:7295/api/ActivateKey", content);
+                    var response = await client.PostAsync("https://licensemanagementsystemseverside20240316184109.azurewebsites.net/api/ActivateKey", content);
 
                     if (response.IsSuccessStatusCode)
                     {
+
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
                         {
-                            if(response.Content.ReadAsStringAsync().Result == "Activated")
+                            if (response.Content.ReadAsStringAsync().Result == "Invalid Key")
+                            {
+                                MessageBox.Show("Invalid Key.", "Ok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                            }
+
+                            if (response.Content.ReadAsStringAsync().Result == "Activated")
                             {
                                 MessageBox.Show("License Key Activated Successfully.", "Ok", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -86,11 +103,7 @@ namespace separate_app
                             if (response.Content.ReadAsStringAsync().Result == "Expired")
                             {
                                 MessageBox.Show("Expired", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                //clear the licensekey.text file
-                                using (StreamWriter sw = new StreamWriter("LicenseKey.txt"))
-                                {
-                                    sw.WriteLine("");
-                                }
+                              
                             }
                         }
                     }
@@ -103,6 +116,7 @@ namespace separate_app
                 {
                     MessageBox.Show($"An error occurred: {ex.Message}");
                 }
+
             }
         }
 
@@ -127,6 +141,11 @@ namespace separate_app
         }
 
         private void guna2HtmlLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2ProgressIndicator1_Click(object sender, EventArgs e)
         {
 
         }

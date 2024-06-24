@@ -129,7 +129,7 @@ namespace WindowsFormsApp
 
                 try
                 {
-                    var response = await client.PostAsync("https://localhost:7295/api/LogingValidateInfo/AddClientServerDetails", content);
+                    var response = await client.PostAsync("https://licensemanagementsystemseverside20240316184109.azurewebsites.net/api/LogingValidateInfo/AddClientServerDetails", content);
                     if (response.IsSuccessStatusCode)
                     {
                      
